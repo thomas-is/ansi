@@ -2,8 +2,7 @@
 
 
 BASEDIR=$( realpath $(dirname $0) )
-. $BASEDIR/ansi.sh
-
+. $BASEDIR/codes.sh
 
 OK=$( BOLD; FG 2; printf "*"; NORMAL)
 KO=$( BOLD; FG 1; printf "x"; NORMAL)

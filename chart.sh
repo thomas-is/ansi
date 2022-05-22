@@ -1,7 +1,7 @@
 #!/bin/sh
 
 BASEDIR=$( realpath $(dirname $0) )
-. $BASEDIR/ansi.sh
+. $BASEDIR/codes.sh
 
 renderFG() { FG $1; printf " %3d " $1; NORMAL; }
 renderCell() { BG $1; printf " %3d " $1; NORMAL; }

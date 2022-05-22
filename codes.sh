@@ -2,10 +2,12 @@
 
 ## https://en.wikipedia.org/wiki/ANSI_escape_code
 
-ESC() { printf "\033"; }                  # escape
+ESC() { printf "\033";    }               # escape
 
-RIS() { ESC; printf "c"; }                # reset to initial state
-CSI() { ESC; printf "["; }                # control sequence introducer
+RIS() { ESC; printf "c";  }               # reset to initial state
+OSC() { ESC; printf "]";  }               # operationg system command
+ST()  { ESC; printf "\\"; }               # string terminator
+CSI() { ESC; printf "[";  }               # control sequence introducer
 
 CUU() { CSI; printf "${1:-0}A"; }         # cursor up
 CUD() { CSI; printf "${1:-0}B"; }         # cursor down
@@ -37,3 +39,10 @@ FG()        { SGR "38;5;${1:-0}"; }
 BG()        { SGR "48;5;${1:-0}"; }
 FG_RGB()    { SGR "38;2;${1:-255};${2:-255};${3:-255}"; }
 BG_RGB()    { SGR "48;2;${1:-0};${2:-0};${3:-0}"; }
+
+HLINK() {
+  OSC; printf "8;;"
+  printf "%s" "$@"; ST
+  printf "%s" "$@"; ST
+  printf "\n"
+}
